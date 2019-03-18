@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherApp"
+        xmlns:weather="clr-namespace:WeatherApp.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="500">
+
+    <Window.DataContext>
+        <weather:WeatherViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -25,7 +31,9 @@
                            Text="Enter US ZIP Code"/>
                 <TextBox HorizontalAlignment="Center"
                          VerticalAlignment="Center"
-                         Margin="5"/>
+                         Margin="5"
+                         Width="45"/>
+                <Button x:Name="getWeather" Click="Button_Click">Get Weather</Button>
             </StackPanel>
 
             <Grid Grid.Row="1">
