@@ -33,7 +33,7 @@
                          VerticalAlignment="Center"
                          Margin="5"
                          Width="45"/>
-                <Button x:Name="getWeather" Click="Button_Click">Get Weather</Button>
+                <Button x:Name="getWeather">Get Weather</Button>
             </StackPanel>
 
             <Grid Grid.Row="1">
