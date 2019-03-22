@@ -33,7 +33,7 @@
                          VerticalAlignment="Center"
                          Margin="5"
                          Width="45"/>
-                <Button x:Name="getWeather">Get Weather</Button>
+                <Button Command="{Binding GetWeatherCommand}">Get Weather</Button>
             </StackPanel>
 
             <Grid Grid.Row="1">
@@ -52,12 +52,14 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Weather" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="0" Grid.Row="2" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="0" Grid.Row="3" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="0" Grid.Row="4" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="0" Grid.Row="5" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="0" Grid.Row="6" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Weather.WeatherCondition}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </Grid>
         
