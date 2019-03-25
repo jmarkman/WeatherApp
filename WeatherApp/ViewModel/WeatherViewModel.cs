@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WeatherAPI;
 using WeatherApp.Commands;
 using WeatherApp.Model;
 
@@ -14,35 +15,42 @@ namespace WeatherApp.ViewModel
 {
     public class WeatherViewModel
     {
-        //private WeatherClient client = new WeatherClient("aaa");
+        // This would have a key as the param if I was running it on my end
+        private WeatherClient client = new WeatherClient("aaa");
 
-        public int ZipCode { get; set; }
         public ICommand GetWeatherCommand { get; }
-        //public ReadOnlyObservableCollection<Model.Weather> WeatherData { get; }
-
-        public Model.Weather Weather { get; }
+        public int ZipCode { get; set; }
+        public Model.Weather Weather { get; private set; }
         public bool CanUpdate
         {
             get
             {
-                if (Weather == null)
-                {
-                    return false;
-                }
-                return !string.IsNullOrWhiteSpace(Weather.WeatherCondition);
+                // first try logic for CanExecute, but this had the button automatically disabled
+
+                //if (Weather == null)
+                //{
+                //    return false;
+                //}
+                //return !string.IsNullOrWhiteSpace(Weather.WeatherCondition);
+
+                // second try logic for CanExecute, thought this would work because binding places a "0"
+                // in the textbox automatically (though this isn't desired as a feature) and it would return
+                // true until the user entered a code
+                // return ZipCode == 0;
+
+                return true;
             }
         }
 
         public WeatherViewModel()
         {
-            Weather = new Model.Weather("Rain");
-            GetWeatherCommand = new GetWeatherCommand(this);
+            GetWeatherCommand = new GetWeatherCommand(this, ZipCode);
         }
 
-        public void GetWeather()
+        public void GetWeather(int zipCode)
         {
-            //client.GetWeatherDataAsync(zipCode).Result;
-            MessageBox.Show("Hello World");
+            var weatherData = client.GetWeatherDataAsync(zipCode).Result;
+            Weather = new Model.Weather(weatherData.Weather[0].WeatherCondition);
         }
 
     }

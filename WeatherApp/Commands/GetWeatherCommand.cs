@@ -11,10 +11,12 @@ namespace WeatherApp.Commands
     internal class GetWeatherCommand : ICommand
     {
         private WeatherViewModel _viewModel;
+        private int _zip;
 
-        public GetWeatherCommand(WeatherViewModel viewModel)
+        public GetWeatherCommand(WeatherViewModel viewModel, int zipCode)
         {
-            _viewModel = viewModel;   
+            _viewModel = viewModel;
+            _zip = zipCode;
         }
 
         public event EventHandler CanExecuteChanged
@@ -36,7 +38,7 @@ namespace WeatherApp.Commands
 
         public void Execute(object parameter)
         {
-            _viewModel.GetWeather();
+            _viewModel.GetWeather(_zip);
         }
     }
 }
