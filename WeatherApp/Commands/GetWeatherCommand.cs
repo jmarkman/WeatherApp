@@ -38,7 +38,7 @@ namespace WeatherApp.Commands
 
         public void Execute(object parameter)
         {
-            _viewModel.GetWeather(_zip);
+            //_viewModel.GetWeather(_zip);
         }
     }
 }

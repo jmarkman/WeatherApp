@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WeatherApp.Model
 {
-    public class Weather : INotifyPropertyChanged
+    public class WeatherModel : INotifyPropertyChanged
     {
         private string _weatherCondition;
 
@@ -24,7 +24,7 @@ namespace WeatherApp.Model
             }
         }
 
-        public Weather(string weatherCondition)
+        public WeatherModel(string weatherCondition)
         {
             WeatherCondition = weatherCondition;
         }

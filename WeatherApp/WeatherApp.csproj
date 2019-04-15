@@ -65,7 +65,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\GetWeatherCommand.cs" />
-    <Compile Include="Model\Weather.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Model\WeatherModel.cs" />
     <Compile Include="ViewModel\WeatherViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
