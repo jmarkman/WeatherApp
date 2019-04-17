@@ -14,14 +14,12 @@ using WeatherApp.Model;
 
 namespace WeatherApp.ViewModel
 {
-    public class WeatherViewModel : INotifyPropertyChanged
+    public class WeatherViewModel : BaseViewModel
     {
         // This would have a key as the param if I was running it on my end
-        private WeatherClient client = new WeatherClient("aaa");
+        private WeatherClient client = new WeatherClient("45fdf4a2d375aa1c3f5bef2b009eb11a");
         private int _zipCode;
         private WeatherModel _weatherModel;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand GetWeatherCommand { get; }
 
@@ -34,7 +32,7 @@ namespace WeatherApp.ViewModel
             set
             {
                 _zipCode = value;
-                OnPropertyChanged("ZipCode");
+                OnPropertyChanged(nameof(ZipCode));
             }
         }
 
@@ -47,7 +45,7 @@ namespace WeatherApp.ViewModel
             set
             {
                 _weatherModel = value;
-                OnPropertyChanged("WeatherModel");
+                OnPropertyChanged(nameof(Weather));
             }
         }
                 
@@ -74,18 +72,13 @@ namespace WeatherApp.ViewModel
 
         public WeatherViewModel()
         {
-            GetWeatherCommand = new RelayCommand(GetWeather);
+            GetWeatherCommand = new RelayCommand(GetWeatherAsync);
         }
 
-        public void GetWeather()
+        public async void GetWeatherAsync()
         {
-            var weatherData = client.GetWeatherDataAsync(ZipCode).Result;
-            Weather = new Model.WeatherModel(weatherData.Weather[0].WeatherCondition);
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            var weatherData = await client.GetWeatherDataAsync(ZipCode);
+            Weather = new WeatherModel(weatherData.Weather[0].WeatherCondition);
         }
     }
 }
