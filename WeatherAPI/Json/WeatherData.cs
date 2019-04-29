@@ -11,6 +11,8 @@ namespace WeatherAPI
     {
         [JsonProperty(PropertyName = "coord")]
         public Coord Coordinates { get; set; }
+        [JsonProperty(PropertyName = "clouds")]
+        public Clouds CloudInfo { get; set; }
         [JsonProperty(PropertyName = "weather")]
         public Weather[] Weather { get; set; }
         [JsonProperty(PropertyName = "main")]
@@ -23,7 +25,10 @@ namespace WeatherAPI
         public int UnixTimeWhenGathered { get; set; }
         [JsonProperty(PropertyName = "sys")]
         public Sys RegionInfo { get; set; }
-
+        [JsonProperty(PropertyName = "id")]
+        public int ID { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string CityName { get; set; }
     }
 
     public class Weather
@@ -65,7 +70,7 @@ namespace WeatherAPI
         [JsonProperty(PropertyName = "speed")]
         public float WindSpeed { get; set; }
         [JsonProperty(PropertyName = "deg")]
-        public int WindDirectionDegrees { get; set; }
+        public float WindDirectionDegrees { get; set; }
     }
 
     public class Clouds
@@ -76,12 +81,11 @@ namespace WeatherAPI
 
     public class Sys
     {
-
-        public int type { get; set; }
-        public int id { get; set; }
-        public float message { get; set; }
-        public string country { get; set; }
-        public int sunrise { get; set; }
-        public int sunset { get; set; }
+        [JsonProperty(PropertyName = "country")]
+        public string CountryCode { get; set; }
+        [JsonProperty(PropertyName = "sunrise")]
+        public int SunriseTime { get; set; }
+        [JsonProperty(PropertyName = "sunset")]
+        public int SunsetTime { get; set; }
     }
 }

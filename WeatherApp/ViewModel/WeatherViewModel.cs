@@ -78,7 +78,7 @@ namespace WeatherApp.ViewModel
         public async void GetWeatherAsync()
         {
             var weatherData = await client.GetWeatherDataAsync(ZipCode);
-            Weather = new WeatherModel(weatherData.Weather[0].WeatherCondition);
+            Weather = new WeatherModel(weatherData);
         }
     }
 }

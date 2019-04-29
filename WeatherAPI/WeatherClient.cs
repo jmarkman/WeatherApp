@@ -27,7 +27,7 @@ namespace WeatherAPI
         {
             ZipCode = zipCode;
             WeatherData weatherData = null;
-            urlParams = $"weather?zip={ZipCode},us&appid={apiKey}";
+            urlParams = $"weather?zip={ZipCode},us&units=Imperial&appid={apiKey}";
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Commands\GetWeatherCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converter\TemperatureFloatToIntConverter.cs" />
     <Compile Include="Model\WeatherModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\CurrentWeatherViewModel.cs" />

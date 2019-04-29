@@ -10,10 +10,23 @@ namespace WeatherApp.ViewModel
     {
         private string _weatherCondition;
         public WeatherViewModel WeatherViewModel { get; set; }
-          
+        
+        public string WeatherCondition
+        {
+            get
+            {
+                return _weatherCondition;
+            }
+            set
+            {
+                _weatherCondition = value;
+                OnPropertyChanged();
+            }
+        }
+
         public CurrentWeatherViewModel()
         {
-
+            WeatherViewModel = new WeatherViewModel();
         }
 
 

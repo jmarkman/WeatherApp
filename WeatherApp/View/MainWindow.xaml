@@ -34,8 +34,8 @@
                          VerticalAlignment="Center"
                          Margin="5"
                          Width="45"
-                         Text="{Binding ZipCode, diag:PresentationTraceSources.TraceLevel=High}"/>
-                <Button Command="{Binding GetWeatherCommand, diag:PresentationTraceSources.TraceLevel=High}">Get Weather</Button>
+                         Text="{Binding WeatherViewModel.ZipCode, diag:PresentationTraceSources.TraceLevel=High}"/>
+                <Button Command="{Binding WeatherViewModel.GetWeatherCommand, diag:PresentationTraceSources.TraceLevel=High}">Get Weather</Button>
             </StackPanel>
 
             <Grid Grid.Row="1">
@@ -55,13 +55,19 @@
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="0" Grid.Row="1" Text="Weather" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="2" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="3" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="4" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="5" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="0" Grid.Row="6" Text="City" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Temperature" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Maximum Temperature" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Grid.Row="4" Text="Minimum Temperature" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Grid.Row="5" Text="Humidity" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="0" Grid.Row="6" Text="Cloud Coverage" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding WeatherCondition, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding WeatherViewModel.Weather.City, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding WeatherViewModel.Weather.WeatherCondition, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding WeatherViewModel.Weather.Temperature, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding WeatherViewModel.Weather.MaximumTemperature, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding WeatherViewModel.Weather.MinimumTemperature, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding WeatherViewModel.Weather.Humidity, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding WeatherViewModel.Weather.CloudCoverage, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </Grid>
         
