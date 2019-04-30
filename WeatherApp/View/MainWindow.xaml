@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherApp"
+        xmlns:converter="clr-namespace:WeatherApp.Converter"
         xmlns:weather="clr-namespace:WeatherApp.ViewModel"
         xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
         mc:Ignorable="d"
@@ -12,7 +13,7 @@
     <Window.DataContext>
         <weather:CurrentWeatherViewModel/>
     </Window.DataContext>
-    
+   
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -34,7 +35,7 @@
                          VerticalAlignment="Center"
                          Margin="5"
                          Width="45"
-                         Text="{Binding WeatherViewModel.ZipCode, diag:PresentationTraceSources.TraceLevel=High}"/>
+                         Text="{Binding WeatherViewModel.ZipCode, StringFormat='{}{0:#}'}"/>
                 <Button Command="{Binding WeatherViewModel.GetWeatherCommand, diag:PresentationTraceSources.TraceLevel=High}">Get Weather</Button>
             </StackPanel>
 
@@ -70,6 +71,13 @@
                 <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding WeatherViewModel.Weather.CloudCoverage, Mode=TwoWay, diag:PresentationTraceSources.TraceLevel=High}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </Grid>
-        
+
+        <Grid Grid.Column="1">
+                <Image 
+                    Source="{Binding WeatherViewModel.Weather.Icon, Converter={x:Static converter:IconToUrlConverter.Instance}}" Width="100" Height="100"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+        </Grid>
+
     </Grid>
 </Window>

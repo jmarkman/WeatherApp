@@ -15,7 +15,7 @@ namespace WeatherAPI
         private string urlParams;
         private static HttpClient httpClient = new HttpClient();
 
-        public int ZipCode { get; set; }
+        public string ZipCode { get; set; }
 
         public WeatherClient(string apiKey)
         {
@@ -23,7 +23,7 @@ namespace WeatherAPI
             httpClient.BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/weather");
         }
 
-        public async Task<WeatherData> GetWeatherDataAsync(int zipCode)
+        public async Task<WeatherData> GetWeatherDataAsync(string zipCode)
         {
             ZipCode = zipCode;
             WeatherData weatherData = null;

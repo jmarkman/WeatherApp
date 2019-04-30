@@ -17,6 +17,7 @@ namespace WeatherApp.Model
         private string _minTemp;
         private string _humidity;
         private string _cloudCoverage;
+        private string _icon;
 
         #region OnPropertyChangedVariables
 
@@ -111,6 +112,19 @@ namespace WeatherApp.Model
             }
         }
 
+        public string Icon
+        {
+            get
+            {
+                return _icon;
+            }
+            set
+            {
+                _icon = value;
+                OnPropertyChanged(nameof(Icon));
+            }
+        }
+
         #endregion
 
         public WeatherModel(WeatherData weatherData)
@@ -122,6 +136,7 @@ namespace WeatherApp.Model
             MinimumTemperature = weatherData.TemperatureAndPressure.MinimumTemperature.ToString();
             Humidity = weatherData.TemperatureAndPressure.Humidity.ToString();
             CloudCoverage = weatherData.CloudInfo.CloudCoveragePercent.ToString();
+            Icon = weatherData.Weather[0].WeatherConditionIcon;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

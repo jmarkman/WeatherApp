@@ -18,12 +18,15 @@ namespace WeatherApp.ViewModel
     {
         // This would have a key as the param if I was running it on my end
         private WeatherClient client = new WeatherClient("45fdf4a2d375aa1c3f5bef2b009eb11a");
-        private int _zipCode;
+        private string _zipCode;
         private WeatherModel _weatherModel;
 
         public ICommand GetWeatherCommand { get; }
 
-        public int ZipCode
+        /// <summary>
+        /// The United States ZIP code of the area the user wants weather info from
+        /// </summary>
+        public string ZipCode
         {
             get
             {
@@ -36,6 +39,9 @@ namespace WeatherApp.ViewModel
             }
         }
 
+        /// <summary>
+        /// The weather data to be returned from the OpenWeatherMap API
+        /// </summary>
         public WeatherModel Weather
         {
             get
