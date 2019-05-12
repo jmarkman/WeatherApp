@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace WeatherApp.ViewModel
 {
+    /// <summary>
+    /// Base class to encapsulate INPC for the ViewModel
+    /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -137,6 +138,8 @@ namespace WeatherApp.Model
             Humidity = weatherData.TemperatureAndPressure.Humidity.ToString();
             CloudCoverage = weatherData.CloudInfo.CloudCoveragePercent.ToString();
             Icon = weatherData.Weather[0].WeatherConditionIcon;
+
+            FormatData();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -144,6 +147,31 @@ namespace WeatherApp.Model
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// Formats the incoming data from the OpenWeatherMap API to human-readable and relatable integers
+        /// </summary>
+        private void FormatData()
+        {
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            WeatherCondition = textInfo.ToTitleCase(WeatherCondition);
+
+            Temperature = FormatTemperature(Temperature);
+            MaximumTemperature = FormatTemperature(MaximumTemperature);
+            MinimumTemperature = FormatTemperature(MinimumTemperature);
+        }
+
+        /// <summary>
+        /// Wrapper for converting decimal temperatures to integer temperatures. Uses <see cref="Math.Ceiling(decimal)"/>, rounding up
+        /// </summary>
+        /// <param name="inputTemp">The temperature to convert from decimal to integer</param>
+        /// <returns>The formatted temperature as a string</returns>
+        private string FormatTemperature(string inputTemp)
+        {
+            var formattedTemperature = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(inputTemp)));
+
+            return formattedTemperature.ToString();
         }
     }
 }

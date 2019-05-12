@@ -69,7 +69,6 @@
     <Compile Include="Converter\IconToUrlConverter.cs" />
     <Compile Include="Model\WeatherModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\CurrentWeatherViewModel.cs" />
     <Compile Include="ViewModel\WeatherViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

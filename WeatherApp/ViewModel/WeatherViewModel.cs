@@ -17,6 +17,8 @@ namespace WeatherApp.ViewModel
     public class WeatherViewModel : BaseViewModel
     {
         // This would have a key as the param if I was running it on my end
+        // I already deleted this key pls no bully ;-;
+        // TODO: where do I put a future API key and how would I access it?
         private WeatherClient client = new WeatherClient("45fdf4a2d375aa1c3f5bef2b009eb11a");
         private string _zipCode;
         private WeatherModel _weatherModel;
@@ -59,28 +61,19 @@ namespace WeatherApp.ViewModel
         {
             get
             {
-                // first try logic for CanExecute, but this had the button automatically disabled
-
-                //if (Weather == null)
-                //{
-                //    return false;
-                //}
-                //return !string.IsNullOrWhiteSpace(Weather.WeatherCondition);
-
-                // second try logic for CanExecute, thought this would work because binding places a "0"
-                // in the textbox automatically (though this isn't desired as a feature) and it would return
-                // true until the user entered a code
-                // return ZipCode == 0;
-
                 return true;
             }
         }
 
+        // ctor
         public WeatherViewModel()
         {
             GetWeatherCommand = new RelayCommand(GetWeatherAsync);
         }
 
+        /// <summary>
+        /// Calls <see cref="WeatherClient.GetWeatherDataAsync(string)"/> to get the current weather from the OpenWeatherMap API
+        /// </summary>
         public async void GetWeatherAsync()
         {
             var weatherData = await client.GetWeatherDataAsync(ZipCode);
