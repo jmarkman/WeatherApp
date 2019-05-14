@@ -19,7 +19,7 @@ namespace WeatherApp.ViewModel
         // This would have a key as the param if I was running it on my end
         // I already deleted this key pls no bully ;-;
         // TODO: where do I put a future API key and how would I access it?
-        private WeatherClient client = new WeatherClient("45fdf4a2d375aa1c3f5bef2b009eb11a");
+        private WeatherClient client = new WeatherClient("");
         private string _zipCode;
         private WeatherModel _weatherModel;
 

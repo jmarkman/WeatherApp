@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
@@ -23,6 +20,11 @@ namespace WeatherAPI
             httpClient.BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/weather");
         }
 
+        /// <summary>
+        /// Fetch the current weather data for the provided US Zip code
+        /// </summary>
+        /// <param name="zipCode"></param>
+        /// <returns>The associated weather data as a JSON object</returns>
         public async Task<WeatherData> GetWeatherDataAsync(string zipCode)
         {
             ZipCode = zipCode;

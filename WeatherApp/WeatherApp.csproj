@@ -64,7 +64,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Commands\GetWeatherCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Converter\IconToUrlConverter.cs" />
     <Compile Include="Model\WeatherModel.cs" />
