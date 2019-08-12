@@ -9,27 +9,25 @@ namespace WeatherAPI
     public class WeatherClient
     {
         private string apiKey;
-        private string urlParams;
-        private static HttpClient httpClient = new HttpClient();
-
-        public string ZipCode { get; set; }
+        private static HttpClient httpClient = new HttpClient()
+        {
+            BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/weather")
+        };
 
         public WeatherClient(string apiKey)
         {
             this.apiKey = apiKey;
-            httpClient.BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/weather");
         }
 
         /// <summary>
         /// Fetch the current weather data for the provided US Zip code
         /// </summary>
-        /// <param name="zipCode"></param>
+        /// <param name="zipCode">The 5-digit numeric code representing a neighborhood in the United States</param>
         /// <returns>The associated weather data as a JSON object</returns>
         public async Task<WeatherData> GetWeatherDataAsync(string zipCode)
         {
-            ZipCode = zipCode;
-            WeatherData weatherData = null;
-            urlParams = $"weather?zip={ZipCode},us&units=Imperial&appid={apiKey}";
+            WeatherData weatherData;
+            string urlParams = $"weather?zip={zipCode},us&units=Imperial&appid={apiKey}";
 
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -38,6 +36,10 @@ namespace WeatherAPI
             {
                 var data = await response.Content.ReadAsStringAsync();
                 weatherData = JsonConvert.DeserializeObject<WeatherData>(data);
+            }
+            else
+            {
+                throw new Exception($"The weather data for ZIP code '{zipCode}' could not be retrieved!");
             }
 
             return weatherData;
