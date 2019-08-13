@@ -8,11 +8,8 @@ namespace WeatherAPI
 {
     public class WeatherClient
     {
-        private string apiKey;
-        private static HttpClient httpClient = new HttpClient()
-        {
-            BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/weather")
-        };
+        private readonly string apiKey;
+        private readonly static HttpClient httpClient = CreateHttpClient();
 
         public WeatherClient(string apiKey)
         {
@@ -29,8 +26,6 @@ namespace WeatherAPI
             WeatherData weatherData;
             string urlParams = $"weather?zip={zipCode},us&units=Imperial&appid={apiKey}";
 
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
             var response = await httpClient.GetAsync(urlParams);
             if (response.IsSuccessStatusCode)
             {
@@ -43,6 +38,19 @@ namespace WeatherAPI
             }
 
             return weatherData;
+        }
+
+        /// <summary>
+        /// Instantiates and applies OpenWeatherMap settings to a <see cref="HttpClient"/> object
+        /// </summary>
+        /// <returns>The configured <see cref="HttpClient"/> object</returns>
+        private static HttpClient CreateHttpClient()
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/weather");
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            return client;
         }
     }
 }
